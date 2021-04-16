@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <!--jQueryを読み込む。-->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+
+    <!--これでjQueryに依存したJSを動かせる。-->
+    <script src="{% static 'bbs/js/script.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'bbs/css/style.css' %}">
+    
+</head>
+<body>
+
+
+    <!--
+        actionはリクエストの送信先、未指定だといまアクセスしているページに送信される。
+        methodはリクエストのメソッド。未指定だとGETメソッドが送信される。
+    -->
+    <form action="" method="GET">
+        <!--
+            inputタグ、selectタグ、textareaタグなどのフォームを構成するタグにname属性を指定。このname属性の値を元にviews.pyが値を取り出す。
+        -->
+        <input type="text" name="search" placeholder="ここにキーワードを入れる">
+        <input type="submit" value="検索">
+    </form>
+
+    <form action="" method="POST">
+        <!--
+            POSTメソッドを送信する時、CSRF対策のためのトークン( csrf_token )をセットする。(GET文では不要)
+        -->
+        {% csrf_token %}
+        <input type="text" name="message" placeholder="ここにメッセージを入れる">
+        <input type="submit" value="送信">
+    </form>
+
+
+<hi>HelloWORLD!!</hi>
+<div>{{data}}</div>
+{% for topic in topics %}
+{% if topic.prime %}<div>このユーザーはプライム会員です</div>{% endif %}
+<div style={% if topic.prime %}background:white;{% endif %} >{{ topic.id }}:{{ topic.comment }}</div>
+{% endfor %}
+<div class="preview_control_area">
+
+    <!--preview_date_areaの子要素はコンテンツのみ、ボタンは兄弟要素とする-->
+    <div class="preview_date_area">
+        <div class="data_preview_frame"><div class="data_preview_content">データのプレビュー</div></div>
+        <div class="data_preview_frame"><div class="data_preview_content">データのプレビュー</div></div>
+        <div class="data_preview_frame"><div class="data_preview_content">データのプレビュー</div></div>
+        <div class="data_preview_frame"><div class="data_preview_content">データのプレビュー</div></div>
+        <div class="data_preview_frame"><div class="data_preview_content">データのプレビュー</div></div>
+        <div class="data_preview_frame"><div class="data_preview_content">データのプレビュー</div></div>
+        <div class="data_preview_frame"><div class="data_preview_content">データのプレビュー</div></div>
+        <div class="data_preview_frame"><div class="data_preview_content">データのプレビュー</div></div>
+    </div>
+    <div class="control_button previous_button">{{button1}}</div>
+    <div class="control_button next_button">Next</div>
+</div>
+</body>
+</html>
