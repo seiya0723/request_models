@@ -38,6 +38,13 @@
     </form>
 
 
+    {% if request.GET.search %} 
+    <div style="color:white;">{{ request.GET.search }}で検索しました</div>
+    {% endif %}
+
+
+
+
 <hi>HelloWORLD!!</hi>
 <div>{{data}}</div>
 {% for topic in topics %}
