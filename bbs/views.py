@@ -9,10 +9,10 @@ class BbsView(View):
     def get(self, request, *args, **kwargs):
 
         #予めifでname属性の値が存在するかチェックする。
-        if "search" in request.POST:
+        if "search" in request.GET:
 
             #TODO:実際にはここでDBに検索処理を実行する。
-            print(request.POST["search"])
+            print(request.GET["search"])
 
 
 

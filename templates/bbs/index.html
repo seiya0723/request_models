@@ -24,7 +24,7 @@
         <!--
             inputタグ、selectタグ、textareaタグなどのフォームを構成するタグにname属性を指定。このname属性の値を元にviews.pyが値を取り出す。
         -->
-        <input type="text" name="search" placeholder="ここにキーワードを入れる">
+        <input type="text" name="search" placeholder="ここにキーワードを入れる" value="{{ request.GET.search }}">
         <input type="submit" value="検索">
     </form>
 
